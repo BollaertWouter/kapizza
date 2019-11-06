@@ -4,11 +4,11 @@
       <h2 class="col-3">- Time for pizza -</h2>
     </div>
     <div class="grid grid-pad">
-      <div *ngFor="let pizza of products" class="row align-items-center justify-content-center">
-        <p class="col-3">{{pizza.name}}</p>
-        <p class="col-3">{{pizza.price}}</p>
+      <div *ngFor="let product of products" class="row align-items-center justify-content-center">
+        <p class="col-3">{{product.name}}</p>
+        <p class="col-3">{{product.price}}</p>
         <div class="btn-group">
-          <button (click)="addPizza({name: pizza.name, price: pizza.price})" type="button" class="btn btn-primary">
+          <button (click)="addProduct(product)" type="button" class="btn btn-primary">
             <i class="fa fa-check"></i>
           </button>
         </div>
@@ -19,14 +19,15 @@
     <div class="grid grid-pad">
       <mat-list>
         <mat-list-item *ngFor="let product of added_products"
-          class="container-fluid row align-items-center justify-content-center">
+          class="container-fluid flex-row align-items-center justify-content-center">
+          <p [id]="product.name" class="col-sm-1">1</p>
           <p class="col-sm-6 pizza-cart-item">{{product.name}}</p>
           <p class="col-sm-3 pizza-cart-item">{{product.price}}</p>
           <div class="col-sm-2 btn-group">
-            <button (click)="removePizza(product)"  type="button" class="btn btn-primary btn-pizza-cart">
+            <button (click)="removeProduct(product)" type="button" class="btn btn-primary btn-pizza-cart">
               <i class="fa fa-remove"></i>
             </button>
-            <button (click)="addPizza(product) " type="button" class="btn btn-primary btn-pizza-cart">
+            <button (click)="addProduct(product) " type="button" class="btn btn-primary btn-pizza-cart">
               <i class="fa fa-plus"></i>
             </button>
           </div>

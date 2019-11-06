@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
     new Product("Menu deal 2", "€ 24,95"),
     new Product("Menu for one", "€ 13,95")];
 
-  added_products = [];
+  added_products: Product[] = [];
 
   title = 'Kapizza - menu';
 
@@ -23,12 +23,26 @@ export class MenuComponent implements OnInit {
 
   }
 
-  addPizza(product: Product): void {
-    this.added_products.push({name: product.name, price: product.price});
+  addProduct(product: Product): void {
+    if (this.added_products.indexOf(product) !== -1) {
+      product.amount += 1;
+
+      document.getElementById(product.name).innerText = String(product.amount);
+    } else {
+      this.added_products.push(product);
+    }
   }
 
-  removePizza(product: Product): void {
-    this.arrayRemove(product);
+  removeProduct(product: Product): void {
+    if (this.added_products.indexOf(product) !== -1) {
+      if (product.amount > 1) {
+        product.amount -= 1;
+
+        document.getElementById(product.name).innerText = String(product.amount);
+      } else {
+        this.arrayRemove(product);
+      }
+    }
   }
 
   arrayRemove(value) {
