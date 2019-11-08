@@ -16,13 +16,18 @@ public class Product {
 	@Column(name = "price")
 	private double price;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "size")
+	private Sizing size;
+
 	public Product() {
 
 	}
 
-	public Product(String name, double price) {
+	public Product(String name, double price, Sizing size) {
 		this.name = name;
 		this.price = price;
+		this.size = size;
 	}
 
 	public int getId() {
@@ -45,6 +50,14 @@ public class Product {
 		return price;
 	}
 
+	public void setSize(Sizing size) {
+		this.size = size;
+	}
+
+	public Sizing getSize() {
+		return size;
+	}
+
 	public String priceToStringWithEuro() {
 		return "€" + price;
 	}
@@ -55,6 +68,6 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product{" + "name='" + name + '\'' + ", price=" + price + '}';
+		return "Product{" + "name='" + name + '\'' + "size='"+ '\'' + ", price=" + price + '}';
 	}
 }
